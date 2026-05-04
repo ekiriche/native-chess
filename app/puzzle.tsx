@@ -1,6 +1,7 @@
+import { Chessboard } from "@/components/Chessboard";
 import { usePuzzle } from "@/hooks/usePuzzle";
-import { useEffect } from "react";
 import { Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const PuzzleScreen = () => {
   const {
@@ -14,15 +15,19 @@ const PuzzleScreen = () => {
   //   getRandomPuzzle();
   // }, []);
 
-  if (puzzleError) {
-    return <Text>Error! {puzzleError.toString()}</Text>;
-  }
+  const getContent = () => {
+    if (puzzleError) {
+      return <Text>Error! {puzzleError.toString()}</Text>;
+    }
 
-  if (puzzleLoading || !puzzleData) {
-    return <Text>Loading...</Text>;
-  }
+    if (puzzleLoading) {
+      return <Text>Loading...</Text>;
+    }
 
-  return <Text>{puzzleData.game.pgn}</Text>;
+    return <Chessboard playerColor="white" fen={puzzleData?.game?.pgn} />;
+  };
+
+  return <SafeAreaView style={{ flex: 1 }}>{getContent()}</SafeAreaView>;
 };
 
 export default PuzzleScreen;
