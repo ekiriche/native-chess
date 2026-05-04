@@ -10,9 +10,9 @@ const PuzzleScreen = () => {
     getRandomPuzzle,
   } = usePuzzle();
 
-  useEffect(() => {
-    getRandomPuzzle();
-  }, []);
+  // useEffect(() => {
+  //   getRandomPuzzle();
+  // }, []);
 
   if (puzzleError) {
     return <Text>Error! {puzzleError.toString()}</Text>;
