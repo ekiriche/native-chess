@@ -1,4 +1,5 @@
 export type PlayerColor = "white" | "black";
+export type PlayerColorShort = "w" | "b";
 
 export type Puzzle = {
   game: {
